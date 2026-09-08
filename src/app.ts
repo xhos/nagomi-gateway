@@ -1,11 +1,12 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { auth } from "./auth";
+import { requireEnv } from "./env";
 import { logger } from "./logger";
 
 const app = new Hono();
 
-const nullCoreUrl = process.env.NULL_CORE_URL!;
+const nullCoreUrl = requireEnv("NULL_CORE_URL");
 const allowedOrigins = process.env.TRUSTED_ORIGINS?.split(",") ?? [];
 
 app.use(

@@ -2,9 +2,10 @@ import { betterAuth } from "better-auth";
 import { jwt } from "better-auth/plugins";
 import { Pool } from "pg";
 import { v4 as uuidv4 } from "uuid";
+import { requireEnv } from "./env";
 
 const authPool = new Pool({
-	connectionString: process.env.AUTH_DATABASE_URL!,
+	connectionString: requireEnv("AUTH_DATABASE_URL"),
 });
 
 const trustedOrigins = process.env.TRUSTED_ORIGINS?.split(",") ?? [];

@@ -66,7 +66,7 @@ describe("proxy", () => {
 
 		await app.request("/api/accounts", { method: "GET" });
 
-		expect(capturedHeaders["Authorization"]).toBe("Bearer my-jwt-token");
+		expect(capturedHeaders.Authorization).toBe("Bearer my-jwt-token");
 		globalThis.fetch = originalFetch;
 	});
 

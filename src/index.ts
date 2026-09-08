@@ -3,7 +3,7 @@ import { app } from "./app";
 import { auth } from "./auth";
 import { logger } from "./logger";
 
-const port = parseInt(process.env.PORT || "55550");
+const port = parseInt(process.env.PORT || "55550", 10);
 const hostname = process.env.HOSTNAME || "127.0.0.1";
 
 const { toBeCreated, toBeAdded, runMigrations } = await getMigrations(

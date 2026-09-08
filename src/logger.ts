@@ -15,7 +15,7 @@ function write(level: Level, msg: string, fields?: Record<string, unknown>) {
 	let line: string;
 
 	if (format === "json") {
-		line = JSON.stringify({ time: now, level, msg, ...fields }) + "\n";
+		line = `${JSON.stringify({ time: now, level, msg, ...fields })}\n`;
 	} else {
 		const extras = fields
 			? " " +
