@@ -30,12 +30,14 @@
       pre-commit = git-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
-          alejandra.enable = true;
+          alejandra = {
+            enable = true;
+            excludes = ["bun\\.nix"];
+          };
           biome.enable = true;
 
           nix-build = {
             enable = true;
-            name = "nix-build";
             entry = pkgs.lib.getExe (pkgs.writeShellApplication {
               name = "nix-build-check";
               runtimeInputs = [pkgs.nix];
@@ -66,14 +68,19 @@
         packages = with pkgs; [
           bun
           bun2nix.packages.${system}.default
+          biome
+          hurl
 
           (writeShellScriptBin "run" ''
             ${bun}/bin/bun install
             exec ${bun}/bin/bun run dev
           '')
         ];
+
         shellHook = self.checks.${system}.pre-commit.shellHook;
       };
     });
+
+    formatter = forAllSystems (system: pkgs: pkgs.alejandra);
   };
 }
