@@ -2,7 +2,7 @@
 POST http://localhost:55550/api/auth/sign-up/email
 Content-Type: application/json
 {
-  "email": "test@null.lab",
+  "email": "test@nagomi.lab",
   "password": "hunter2hunter2",
   "name": "Test User"
 }
@@ -13,19 +13,19 @@ HTTP 200
 POST http://localhost:55550/api/auth/sign-in/email
 Content-Type: application/json
 {
-  "email": "test@null.lab",
+  "email": "test@nagomi.lab",
   "password": "hunter2hunter2"
 }
 HTTP 200
 [Captures]
 session_cookie: cookie "better-auth.session_token"
 [Asserts]
-jsonpath "$.user.email" == "test@null.lab"
+jsonpath "$.user.email" == "test@nagomi.lab"
 cookie "better-auth.session_token" exists
 cookie "better-auth.session_token[HttpOnly]" exists
 
 
-# JWKS endpoint must return valid structure for null-core to validate JWTs
+# JWKS endpoint must return valid structure for nagomi-core to validate JWTs
 GET http://localhost:55550/api/auth/jwks
 HTTP 200
 [Asserts]
@@ -40,5 +40,5 @@ GET http://localhost:55550/api/auth/get-session
 Cookie: better-auth.session_token={{session_cookie}}
 HTTP 200
 [Asserts]
-jsonpath "$.user.email" == "test@null.lab"
+jsonpath "$.user.email" == "test@nagomi.lab"
 jsonpath "$.session" exists

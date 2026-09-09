@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "null-gateway",
+      "name": "nagomi-gateway",
       "dependencies": {
         "better-auth": "^1.5.2",
         "hono": "^4.12.4",

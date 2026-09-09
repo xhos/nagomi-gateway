@@ -11,7 +11,8 @@
   fetchgit,
   fetchurl,
   ...
-}: {
+}:
+{
   "@better-auth/core@1.5.2" = fetchurl {
     url = "https://registry.npmjs.org/@better-auth/core/-/core-1.5.2.tgz";
     hash = "sha512-svaKRVN/p3+g++kljLEedHC+RgDlGsVr87tKiATr5xIE7xqLO1If906pMTNMfhF08N5r7pMbix/mRYdObuPKHA==";

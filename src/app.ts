@@ -6,7 +6,7 @@ import { logger } from "./logger";
 
 const app = new Hono();
 
-const nullCoreUrl = requireEnv("NULL_CORE_URL");
+const nagomiCoreUrl = requireEnv("NAGOMI_CORE_URL");
 const allowedOrigins = process.env.TRUSTED_ORIGINS?.split(",") ?? [];
 
 app.use(
@@ -48,7 +48,7 @@ app.all("/api/*", async (c) => {
 	}
 
 	const targetPath = new URL(c.req.url).pathname.replace(/^\/api/, "");
-	const targetUrl = `${nullCoreUrl}${targetPath}`;
+	const targetUrl = `${nagomiCoreUrl}${targetPath}`;
 
 	const body = ["GET", "HEAD"].includes(c.req.method)
 		? undefined

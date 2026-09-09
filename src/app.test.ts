@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
 
-process.env.NULL_CORE_URL = "http://null-core:55555";
+process.env.NAGOMI_CORE_URL = "http://nagomi-core:55555";
 process.env.TRUSTED_ORIGINS = "http://localhost:3000";
 
 const mockGetToken = mock(async () => ({ token: null as string | null }));
@@ -46,7 +46,7 @@ describe("proxy", () => {
 
 		await app.request("/api/transactions/123", { method: "GET" });
 
-		expect(capturedUrl).toBe("http://null-core:55555/transactions/123");
+		expect(capturedUrl).toBe("http://nagomi-core:55555/transactions/123");
 		globalThis.fetch = originalFetch;
 	});
 
@@ -70,7 +70,7 @@ describe("proxy", () => {
 		globalThis.fetch = originalFetch;
 	});
 
-	it("returns 502 when null-core is unreachable", async () => {
+	it("returns 502 when nagomi-core is unreachable", async () => {
 		mockGetToken.mockResolvedValue({ token: "valid-token" });
 
 		const originalFetch = globalThis.fetch;

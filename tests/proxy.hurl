@@ -1,4 +1,4 @@
-# No cookie → gateway must reject before touching null-core
+# No cookie → gateway must reject before touching nagomi-core
 GET http://localhost:55550/api/transactions
 HTTP 401
 [Asserts]
@@ -18,7 +18,7 @@ jsonpath "$.error" == "Unauthorized"
 POST http://localhost:55550/api/auth/sign-in/email
 Content-Type: application/json
 {
-  "email": "test@null.lab",
+  "email": "test@nagomi.lab",
   "password": "hunter2hunter2"
 }
 HTTP 200
@@ -26,7 +26,7 @@ HTTP 200
 session_cookie: cookie "better-auth.session_token"
 
 
-# Authenticated request reaches null-core (expects null-core running at NULL_CORE_URL)
+# Authenticated request reaches nagomi-core (expects nagomi-core running at NAGOMI_CORE_URL)
 GET http://localhost:55550/api/health
 Cookie: better-auth.session_token={{session_cookie}}
 HTTP *

@@ -1,5 +1,5 @@
 {
-	"name": "null-gateway",
+	"name": "nagomi-gateway",
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "bun run --hot src/index.ts",
